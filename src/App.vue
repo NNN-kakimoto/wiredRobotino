@@ -2,32 +2,34 @@
   <v-app>
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span>クソ診断ジェネレータ</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
         flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        href="https://twitter.com/nanannV2"
         target="_blank"
       >
-        <span class="mr-2">Latest Release</span>
+        <span class="mr-2">つくったひと</span>
       </v-btn>
     </v-toolbar>
 
     <v-content>
       <HelloWorld/>
+			<InputsArea />
     </v-content>
   </v-app>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import InputsArea from './components/InputsArea'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+		HelloWorld,
+		InputsArea
   },
   data () {
     return {
