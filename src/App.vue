@@ -16,20 +16,20 @@
 
     <v-content>
       <HelloWorld/>
-			<InputsArea />
+			<work-area />
     </v-content>
   </v-app>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
-import InputsArea from './components/InputsArea'
+import WorkArea from './components/WorkArea'
 
 export default {
   name: 'App',
   components: {
 		HelloWorld,
-		InputsArea
+		WorkArea
   },
   data () {
     return {
