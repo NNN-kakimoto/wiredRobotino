@@ -15,7 +15,6 @@
     </v-toolbar>
 
     <v-content>
-      <HelloWorld/>
 			<work-area />
     </v-content>
   </v-app>
