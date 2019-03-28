@@ -179,10 +179,13 @@ export default {
 			ctx.lineTo(1800,this.drawPoint.resultHeight+this.drawPoint.resultBoxHeight)
 			ctx.lineTo(1080,this.drawPoint.resultHeight+this.drawPoint.resultBoxHeight)
 			ctx.closePath()
+			ctx.stroke()
+			if(this.branches.branch3.result == ''){
+				return true
+			}
 			ctx.font = '80px sans-serif'
 			ctx.fillText('あなたは', this.drawPoint.xCenter, this.drawPoint.resultHeight+115)
 			ctx.fillText(this.branches.branch3.result+'です', this.drawPoint.xCenter, this.drawPoint.resultHeight+190)
-			ctx.stroke()
 		}
 	}
 }
