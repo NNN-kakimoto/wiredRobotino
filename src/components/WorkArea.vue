@@ -21,16 +21,16 @@
 						<v-text-field label="あなたは..." v-model="branches.branch1.result" @change="generate()"></v-text-field>
 					</v-card>
 				</v-flex>
-				<v-flex v-bind:class="branch_quantity.layout">
-					<v-card>
-						<v-text-field label="選択肢2" v-model="branches.branch2.display_text" @change="generate()"></v-text-field>
-						<v-text-field label="あなたは..." v-model="branches.branch2.result" @change="generate()"></v-text-field>
-					</v-card>
-				</v-flex>
 				<v-flex v-if="branches.branch3.exists" v-bind:class="branch_quantity.layout">
 					<v-card>
 						<v-text-field label="選択肢3" v-model="branches.branch3.display_text" @change="generate()"></v-text-field>
 						<v-text-field label="あなたは..." v-model="branches.branch3.result" @change="generate()"></v-text-field>
+					</v-card>
+				</v-flex>
+				<v-flex v-bind:class="branch_quantity.layout">
+					<v-card>
+						<v-text-field label="選択肢2" v-model="branches.branch2.display_text" @change="generate()"></v-text-field>
+						<v-text-field label="あなたは..." v-model="branches.branch2.result" @change="generate()"></v-text-field>
 					</v-card>
 				</v-flex>
 			</v-layout>
@@ -204,7 +204,7 @@ export default {
 			ctx.font = '110px sans-serif'
       ctx.textAlign = 'center'
 			ctx.fillStyle = '#000'
-			ctx.fillText(this.branches.branch3.display_text, (this.drawPoint.xCenter/4)*7, this.drawPoint.conditionCenter+150 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
+			ctx.fillText(this.branches.branch2.display_text, (this.drawPoint.xCenter/4)*7, this.drawPoint.conditionCenter+150 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
 			ctx.moveTo((this.drawPoint.xCenter/4)*7, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
 			ctx.lineTo((this.drawPoint.xCenter/4)*7, this.drawPoint.resultHeight)
 			ctx.moveTo((this.drawPoint.xCenter/4)*7-360, this.drawPoint.resultHeight)
@@ -213,12 +213,12 @@ export default {
 			ctx.lineTo((this.drawPoint.xCenter/4)*7-360,this.drawPoint.resultHeight+this.drawPoint.resultBoxHeight)
 			ctx.closePath()
 			ctx.stroke()
-			if(this.branches.branch3.result == ''){
+			if(this.branches.branch2.result == ''){
 				return true
 			}
 			ctx.font = '80px sans-serif'
 			ctx.fillText('あなたは', (this.drawPoint.xCenter/4)*7, this.drawPoint.resultHeight+115)
-			ctx.fillText(this.branches.branch3.result+'です', (this.drawPoint.xCenter/4)*7, this.drawPoint.resultHeight+190)
+			ctx.fillText(this.branches.branch2.result+'です', (this.drawPoint.xCenter/4)*7, this.drawPoint.resultHeight+190)
 		},
 		drawBranch3(ctx){
 			ctx.beginPath();
@@ -235,7 +235,7 @@ export default {
 			ctx.font = '110px sans-serif'
       ctx.textAlign = 'center'
 			ctx.fillStyle = '#000'
-			ctx.fillText(this.branches.branch2.display_text, this.drawPoint.xCenter, this.drawPoint.conditionCenter+150 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
+			ctx.fillText(this.branches.branch3.display_text, this.drawPoint.xCenter, this.drawPoint.conditionCenter+150 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
 			ctx.moveTo(this.drawPoint.xCenter, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
 			ctx.lineTo(this.drawPoint.xCenter, this.drawPoint.resultHeight)
 			ctx.moveTo(1080, this.drawPoint.resultHeight)
@@ -244,12 +244,12 @@ export default {
 			ctx.lineTo(1080,this.drawPoint.resultHeight+this.drawPoint.resultBoxHeight)
 			ctx.closePath()
 			ctx.stroke()
-			if(this.branches.branch2.result == ''){
+			if(this.branches.branch3.result == ''){
 				return true
 			}
 			ctx.font = '80px sans-serif'
 			ctx.fillText('あなたは', this.drawPoint.xCenter, this.drawPoint.resultHeight+115)
-			ctx.fillText(this.branches.branch2.result+'です', this.drawPoint.xCenter, this.drawPoint.resultHeight+190)
+			ctx.fillText(this.branches.branch3.result+'です', this.drawPoint.xCenter, this.drawPoint.resultHeight+190)
 		},
 		
 	}
