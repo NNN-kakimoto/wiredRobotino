@@ -42,8 +42,10 @@
 
       <v-layout row wrap>
 				<v-flex xs12>
-					<canvas id="output_field" width="2880" height="1620" v-show="!isGenerated"></canvas>
-					<img class="output_image" :src="src" v-show="isGenerated" />
+					<v-card>
+						<canvas id="output_field" width="2880" height="1620" v-show="!isGenerated"></canvas>
+						<img class="output_image" :src="src" v-show="isGenerated" />
+					</v-card>
 				</v-flex>
       </v-layout>
 		</v-container>
@@ -55,18 +57,18 @@ export default {
 	data(){
 		return {
 			judgement:{
-				judgement_name: '5秒でわかる診断',
+				judgement_name: '5秒でわかるサイコパス診断',
 				conditions_branch: 'きのこ派？たけのこ派？',
 				branch_count: 2,
 			},
 			branches: {
 				branch1: {
-					display_text: '',
-					result: ''
+					display_text: 'きのこ派',
+					result: 'サイコパス'
 				},
 				branch2: {
-					display_text: '',
-					result: ''
+					display_text: 'たけのこ派',
+					result: '人間'
 				},
 				branch3:{
 					exists: false,
@@ -114,8 +116,8 @@ export default {
 				// 第3の選択肢.表示ありなら
 				this.drawBranch3(ctx)
 			}
-      this.drawCaption(ctx, this.branches.branch1.display_text, 'left', { 'x': 400, 'y': 1350 })
-      this.drawCaption(ctx, 'iiii', 'right', { 'x': 2480, 'y': 1350 })
+			this.drawBranch1(ctx)
+			this.drawBranch2(ctx)
       // 生成
       ctx = document.getElementById('output_field')
       this.isGenerated = true
@@ -156,6 +158,68 @@ export default {
 			ctx.closePath()
 			ctx.stroke()
 		},
+		drawBranch1(ctx){
+			ctx.beginPath();
+			ctx.strokeStyle = '#000'
+			ctx.lineWidth = '5'
+			ctx.moveTo(this.drawPoint.xCenter-this.drawPoint.diaWidth, this.drawPoint.conditionCenter-25)
+			ctx.lineTo(this.drawPoint.xCenter/4, this.drawPoint.conditionCenter-25)
+			ctx.lineTo(this.drawPoint.xCenter/4, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar)
+			ctx.moveTo(this.drawPoint.xCenter/4-350, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar)
+			ctx.lineTo(this.drawPoint.xCenter/4+350, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar)
+			ctx.lineTo(this.drawPoint.xCenter/4+350, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
+			ctx.lineTo(this.drawPoint.xCenter/4-350, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
+			ctx.closePath()
+			ctx.font = '110px sans-serif'
+      ctx.textAlign = 'center'
+			ctx.fillStyle = '#000'
+			ctx.fillText(this.branches.branch1.display_text, this.drawPoint.xCenter/4, this.drawPoint.conditionCenter+150 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
+			ctx.moveTo(this.drawPoint.xCenter/4, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
+			ctx.lineTo(this.drawPoint.xCenter/4, this.drawPoint.resultHeight)
+			ctx.moveTo(this.drawPoint.xCenter/4-350, this.drawPoint.resultHeight)
+			ctx.lineTo(this.drawPoint.xCenter/4+350, this.drawPoint.resultHeight)
+			ctx.lineTo(this.drawPoint.xCenter/4+350,this.drawPoint.resultHeight+this.drawPoint.resultBoxHeight)
+			ctx.lineTo(this.drawPoint.xCenter/4-350,this.drawPoint.resultHeight+this.drawPoint.resultBoxHeight)
+			ctx.closePath()
+			ctx.stroke()
+			if(this.branches.branch1.result == ''){
+				return true
+			}
+			ctx.font = '80px sans-serif'
+			ctx.fillText('あなたは', this.drawPoint.xCenter/4, this.drawPoint.resultHeight+115)
+			ctx.fillText(this.branches.branch1.result+'です', this.drawPoint.xCenter/4, this.drawPoint.resultHeight+190)
+		},
+		drawBranch2(ctx){
+			ctx.beginPath();
+			ctx.strokeStyle = '#000'
+			ctx.lineWidth = '5'
+			ctx.moveTo(this.drawPoint.xCenter+this.drawPoint.diaWidth, this.drawPoint.conditionCenter-25)
+			ctx.lineTo((this.drawPoint.xCenter/4)*7, this.drawPoint.conditionCenter-25)
+			ctx.lineTo((this.drawPoint.xCenter/4)*7, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar)
+			ctx.moveTo((this.drawPoint.xCenter/4)*7-350, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar)
+			ctx.lineTo((this.drawPoint.xCenter/4)*7+350, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar)
+			ctx.lineTo((this.drawPoint.xCenter/4)*7+350, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
+			ctx.lineTo((this.drawPoint.xCenter/4)*7-350, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
+			ctx.closePath()
+			ctx.font = '110px sans-serif'
+      ctx.textAlign = 'center'
+			ctx.fillStyle = '#000'
+			ctx.fillText(this.branches.branch3.display_text, (this.drawPoint.xCenter/4)*7, this.drawPoint.conditionCenter+150 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
+			ctx.moveTo((this.drawPoint.xCenter/4)*7, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
+			ctx.lineTo((this.drawPoint.xCenter/4)*7, this.drawPoint.resultHeight)
+			ctx.moveTo((this.drawPoint.xCenter/4)*7-360, this.drawPoint.resultHeight)
+			ctx.lineTo((this.drawPoint.xCenter/4)*7+360, this.drawPoint.resultHeight)
+			ctx.lineTo((this.drawPoint.xCenter/4)*7+360,this.drawPoint.resultHeight+this.drawPoint.resultBoxHeight)
+			ctx.lineTo((this.drawPoint.xCenter/4)*7-360,this.drawPoint.resultHeight+this.drawPoint.resultBoxHeight)
+			ctx.closePath()
+			ctx.stroke()
+			if(this.branches.branch3.result == ''){
+				return true
+			}
+			ctx.font = '80px sans-serif'
+			ctx.fillText('あなたは', (this.drawPoint.xCenter/4)*7, this.drawPoint.resultHeight+115)
+			ctx.fillText(this.branches.branch3.result+'です', (this.drawPoint.xCenter/4)*7, this.drawPoint.resultHeight+190)
+		},
 		drawBranch3(ctx){
 			ctx.beginPath();
 			ctx.strokeStyle = '#000'
@@ -171,7 +235,7 @@ export default {
 			ctx.font = '110px sans-serif'
       ctx.textAlign = 'center'
 			ctx.fillStyle = '#000'
-			ctx.fillText(this.branches.branch3.display_text, this.drawPoint.xCenter, this.drawPoint.conditionCenter+150 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
+			ctx.fillText(this.branches.branch2.display_text, this.drawPoint.xCenter, this.drawPoint.conditionCenter+150 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
 			ctx.moveTo(this.drawPoint.xCenter, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
 			ctx.lineTo(this.drawPoint.xCenter, this.drawPoint.resultHeight)
 			ctx.moveTo(1080, this.drawPoint.resultHeight)
@@ -180,13 +244,14 @@ export default {
 			ctx.lineTo(1080,this.drawPoint.resultHeight+this.drawPoint.resultBoxHeight)
 			ctx.closePath()
 			ctx.stroke()
-			if(this.branches.branch3.result == ''){
+			if(this.branches.branch2.result == ''){
 				return true
 			}
 			ctx.font = '80px sans-serif'
 			ctx.fillText('あなたは', this.drawPoint.xCenter, this.drawPoint.resultHeight+115)
-			ctx.fillText(this.branches.branch3.result+'です', this.drawPoint.xCenter, this.drawPoint.resultHeight+190)
-		}
+			ctx.fillText(this.branches.branch2.result+'です', this.drawPoint.xCenter, this.drawPoint.resultHeight+190)
+		},
+		
 	}
 }
 </script>

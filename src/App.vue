@@ -7,7 +7,7 @@
       <v-spacer></v-spacer>
       <v-btn
         flat
-        href="https://twitter.com/nanannV2"
+        href="https://twitter.com/kakimoto_itc"
         target="_blank"
       >
         <span class="mr-2">つくったひと</span>
