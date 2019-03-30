@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
+      <v-toolbar-title class="text-uppercase">
         <span>クソ診断ジェネレータ</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -21,13 +21,11 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
 import WorkArea from './components/WorkArea'
 
 export default {
   name: 'App',
   components: {
-		HelloWorld,
 		WorkArea
   },
   data () {
@@ -37,3 +35,10 @@ export default {
   }
 }
 </script>
+<style>
+@media screen and (max-width: 960px) {
+	.v-toolbar__title{
+		font-size: 15px !important;
+	}
+}
+</style>

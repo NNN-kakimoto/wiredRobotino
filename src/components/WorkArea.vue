@@ -36,11 +36,20 @@
 			</v-layout>
 		</v-container>
 		<v-container>
-			<!-- <div class="row mb-2 mr-1 mr-1 ml-1">
-        <a href ="https://twitter.com/intent/tweet?&hashtags=嵐を呼ぶジェネレーター&url=https://afterschoolstudy.github.io/generator_of_call_a_storm" class="col-md-6 btn btn-primary">嵐をシェアする！</a>
-      </div> -->
+			<ol>
+				<li>文字を書き換える！</li>
+				<li>画像を長押しして保存！</li>
+				<li>
+					<v-btn color="primary"
+						target="_blank"
+						href ="https://twitter.com/intent/tweet?&hashtags=クソ診断ジェネレーター&url=https://nnn-kakimoto.github.io/five-sec-judge/dist/"
+					>
+						シェアする！
+					</v-btn>
+				</li>
+			</ol>
 
-      <v-layout row wrap>
+			<v-layout row wrap>
 				<v-flex xs12>
 					<v-card>
 						<canvas id="output_field" width="2880" height="1620" v-show="!isGenerated"></canvas>
@@ -108,7 +117,7 @@ export default {
 			this.generate()
 		},
 		generate () {
-      // 描画
+			// 描画
 			let ctx = document.getElementById('output_field').getContext('2d')
 			this.drawInitial(ctx)
 			this.drawTitle(ctx)
@@ -118,28 +127,28 @@ export default {
 			}
 			this.drawBranch1(ctx)
 			this.drawBranch2(ctx)
-      // 生成
-      ctx = document.getElementById('output_field')
-      this.isGenerated = true
-      this.src = ctx.toDataURL()
-    },
-    drawTitle (ctx) {
+			// 生成
+			ctx = document.getElementById('output_field')
+			this.isGenerated = true
+			this.src = ctx.toDataURL()
+		},
+		drawTitle (ctx) {
 			// 診断タイトルと条件式を描画
-      ctx.font = '120px sans-serif'
-      ctx.textAlign = 'center'
-      ctx.fillStyle = '#000'
+			ctx.font = '120px sans-serif'
+			ctx.textAlign = 'center'
+			ctx.fillStyle = '#000'
 			ctx.fillText(this.judgement.judgement_name, this.drawPoint.xCenter, 200)
 			ctx.font = '75px sans-serif'
-      ctx.fillText(this.judgement.conditions_branch, this.drawPoint.xCenter, this.drawPoint.conditionCenter)
-    },
-    drawCaption (ctx, text, align, coordinate) {
-      ctx.textAlign = align
-      ctx.lineWidth = 5
-      ctx.fillStyle = '#FFF'
-      ctx.font = '90px cursive'
-      ctx.fillText(text, coordinate['x'], coordinate['y'])
-      ctx.strokeStyle = 'gray'
-      ctx.strokeText(text, coordinate['x'], coordinate['y'])
+			ctx.fillText(this.judgement.conditions_branch, this.drawPoint.xCenter, this.drawPoint.conditionCenter)
+		},
+		drawCaption (ctx, text, align, coordinate) {
+			ctx.textAlign = align
+			ctx.lineWidth = 5
+			ctx.fillStyle = '#FFF'
+			ctx.font = '90px cursive'
+			ctx.fillText(text, coordinate['x'], coordinate['y'])
+			ctx.strokeStyle = 'gray'
+			ctx.strokeText(text, coordinate['x'], coordinate['y'])
 		},
 		resetCanvas(ctx){
 			ctx.fillStyle = '#fff'
@@ -171,7 +180,7 @@ export default {
 			ctx.lineTo(this.drawPoint.xCenter/4-350, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
 			ctx.closePath()
 			ctx.font = '110px sans-serif'
-      ctx.textAlign = 'center'
+			ctx.textAlign = 'center'
 			ctx.fillStyle = '#000'
 			ctx.fillText(this.branches.branch1.display_text, this.drawPoint.xCenter/4, this.drawPoint.conditionCenter+150 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
 			ctx.moveTo(this.drawPoint.xCenter/4, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
@@ -202,7 +211,7 @@ export default {
 			ctx.lineTo((this.drawPoint.xCenter/4)*7-350, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
 			ctx.closePath()
 			ctx.font = '110px sans-serif'
-      ctx.textAlign = 'center'
+			ctx.textAlign = 'center'
 			ctx.fillStyle = '#000'
 			ctx.fillText(this.branches.branch2.display_text, (this.drawPoint.xCenter/4)*7, this.drawPoint.conditionCenter+150 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
 			ctx.moveTo((this.drawPoint.xCenter/4)*7, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
@@ -233,7 +242,7 @@ export default {
 			ctx.lineTo(1080, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
 			ctx.closePath()
 			ctx.font = '110px sans-serif'
-      ctx.textAlign = 'center'
+			ctx.textAlign = 'center'
 			ctx.fillStyle = '#000'
 			ctx.fillText(this.branches.branch3.display_text, this.drawPoint.xCenter, this.drawPoint.conditionCenter+150 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
 			ctx.moveTo(this.drawPoint.xCenter, this.drawPoint.conditionCenter+175 + this.drawPoint.branchBar+this.drawPoint.branchHeight)
@@ -264,6 +273,9 @@ export default {
 	max-width: 100%;
 }
 @media screen and (max-width: 960px) {
+	.v-toolbar__content{
+		font-size: 15px;
+	}
 	.output_image{
 		width: 100%;
 		height: 100%;
