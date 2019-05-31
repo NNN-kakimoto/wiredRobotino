@@ -2,7 +2,7 @@
   <v-app>
     <v-toolbar app>
       <v-toolbar-title class="text-uppercase">
-        <span>クソ診断ジェネレータ</span>
+        <span>WIRED ROBOTINO STUDY</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
@@ -13,20 +13,19 @@
         <span class="mr-2">つくったひと</span>
       </v-btn>
     </v-toolbar>
-
-    <v-content>
-			<work-area />
-    </v-content>
+		<v-content>
+			<main-page />
+		</v-content>
   </v-app>
 </template>
 
 <script>
-import WorkArea from './components/WorkArea'
+import MainPage from './components/MainPage'
 
 export default {
   name: 'App',
   components: {
-		WorkArea
+		MainPage
   },
   data () {
     return {
